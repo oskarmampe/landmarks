@@ -39,7 +39,7 @@ public class LandmarksApplication implements CommandLineRunner {
 
         ArrayList<Object[]> records = new ArrayList<>();
 
-        records.add(new String[] {"Fountains Abbey & Studley Royal Water Garden", "Ripton"});
+        records.add(new String[] {"Fountains Abbey & Studley Royal Water Garden", "Harrogate"});
         records.add(new String[] {"Henry Moore Institute", "Leeds"});
         records.add(new String[] {"The Deep", "Hull"});
         records.add(new String[] {"RHS Harlow Carr", "Harrogate"});
@@ -51,7 +51,7 @@ public class LandmarksApplication implements CommandLineRunner {
         records.add(new String[] {"Kirkstall Abbey", "Leeds"});
         records.add(new String[] {"Betty’s", "Harrogate"});
         records.add(new String[] {"Captain Cook Memorial Museum", "Whitby"});
-        records.add(new String[] {"Ripon Cathedral", "Ripon"});
+        records.add(new String[] {"Ripon Cathedral", "Harrogate"});
         records.add(new String[] {"Skipton Castle", "Skipton"});
         records.add(new String[] {"Forbidden Corner", "Leyburn"});
         records.add(new String[] {"Bronte Parsonage Museum", "Hamworth"});

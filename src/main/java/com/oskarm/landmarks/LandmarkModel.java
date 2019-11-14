@@ -1,5 +1,7 @@
 package com.oskarm.landmarks;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LandmarkModel {
     private long id;
     private String name;
@@ -13,7 +15,7 @@ public class LandmarkModel {
 
     @Override
     public String toString(){
-        return String.format("Landmark[id=%d, name='%s', city='%s'", id, name, city);
+        return String.format("Landmark[id=%d, name='%s', city='%s']", id, name, city);
     }
 
     public long getId() {
