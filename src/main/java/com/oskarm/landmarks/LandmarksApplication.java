@@ -39,23 +39,22 @@ public class LandmarksApplication implements CommandLineRunner {
 
         ArrayList<Object[]> records = new ArrayList<>();
 
-        records.add(new String[] {"Fountains Abbey & Studley Royal Water Garden", "Harrogate"});
+        records.add(new String[] {"Fountains Abbey", "Harrogate"});
         records.add(new String[] {"Henry Moore Institute", "Leeds"});
-        records.add(new String[] {"The Deep", "Hull"});
-        records.add(new String[] {"RHS Harlow Carr", "Harrogate"});
+        records.add(new String[] {"The Deep (aquarium)", "Hull"});
+        records.add(new String[] {"RHS Garden Harlow Carr", "Harrogate"});
         records.add(new String[] {"York Minster", "York"});
-        records.add(new String[] {"Salts Mills", "Shipley"});
+        records.add(new String[] {"Salts Mill", "Shipley"});
         records.add(new String[] {"Yorkshire Wildlife Park", "Doncaster"});
         records.add(new String[] {"Brimham Rocks", "Harrogate"});
         records.add(new String[] {"The Hepworth", "Wakefield"});
         records.add(new String[] {"Kirkstall Abbey", "Leeds"});
-        records.add(new String[] {"Betty’s", "Harrogate"});
+        records.add(new String[] {"Betty's", "Harrogate"});
         records.add(new String[] {"Captain Cook Memorial Museum", "Whitby"});
         records.add(new String[] {"Ripon Cathedral", "Harrogate"});
         records.add(new String[] {"Skipton Castle", "Skipton"});
         records.add(new String[] {"Forbidden Corner", "Leyburn"});
-        records.add(new String[] {"Bronte Parsonage Museum", "Hamworth"});
-        records.add(new String[] {"Clifford’s Tower", "York"});
+        records.add(new String[] {"Clifford's Tower", "York"});
         records.add(new String[] {"Malham Cove", "Skipton"});
         records.add(new String[] {"Flamingo Land", "Malton"});
         records.add(new String[] {"Castle Howard", "York"});
@@ -66,7 +65,6 @@ public class LandmarksApplication implements CommandLineRunner {
         records.add(new String[] {"Bolton Castle", "Leyburn"});
         records.add(new String[] {"National Science and Media Museum", "Bradford"});
         records.add(new String[] {"Leeds Art Gallery", "Leeds"});
-        records.add(new String[] {"Bolton Abbey", "Skipton"});
         records.add(new String[] {"Bolton Abbey", "Skipton"});
         records.add(new String[] {"York Art Gallery", "York"});
         records.add(new String[] {"National Railway Museum", "York"});

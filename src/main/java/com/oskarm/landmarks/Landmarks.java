@@ -41,7 +41,7 @@ public class Landmarks {
     public @ResponseBody
     ResponseEntity<List<LandmarkModel>> getJsonCityLandmark(@PathVariable String city){
         return ResponseEntity.ok(jdbcTemplate.query(
-                "SELECT id, name, city FROM landmarks WHERE city = ?", new Object[] { city },
+                "SELECT id, name, city FROM landmarks WHERE LOWER(city) LIKE LOWER(?)", new Object[] { city },
                 (rs, rowNum) -> new LandmarkModel(rs.getLong("id"), rs.getString("name"), rs.getString("city"))
         ));
     }
