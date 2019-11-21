@@ -6,19 +6,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.awt.*;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ *
+ * The actual REST controller of the API. This is where most of the logic is implemented.
+ * Most of the logic is self-explanatory, an SQL query is first executed, then a lambda is used to query the result.
+ * Each path has two methods, one for returning JSON the other for returning XML.
+ *
+ */
 @RestController
 public class Landmarks {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
-    private static final String template = "Hello %s";
+    JdbcTemplate jdbcTemplate; // JDBC
+
+    // ------------------------ Getting all of the landmarks ------------------------
 
     @RequestMapping(value="/landmark", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public @ResponseBody
@@ -37,6 +41,8 @@ public class Landmarks {
         ));
     }
 
+    // ------------------------ Getting all of the landmarks in a city ------------------------
+
     @RequestMapping(value="/landmark/city/{city}", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public @ResponseBody
     ResponseEntity<List<LandmarkModel>> getJsonCityLandmark(@PathVariable String city){
@@ -53,6 +59,8 @@ public class Landmarks {
                 (rs, rowNum) -> new LandmarkModel(rs.getLong("id"), rs.getString("name"), rs.getString("city"))
         ));
     }
+
+    // ------------------------ Getting a landmark based on ID ------------------------
 
     @RequestMapping(value="/landmark/id/{id}", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public @ResponseBody
@@ -71,6 +79,8 @@ public class Landmarks {
                 (rs, rowNum) -> new LandmarkModel(rs.getLong("id"), rs.getString("name"), rs.getString("city"))
         ).get(0));
     }
+
+    // ------------------------ Update a landmark given a ID ------------------------
 
     @RequestMapping(value="/landmark/update", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public @ResponseBody
@@ -93,6 +103,7 @@ public class Landmarks {
         map.put("message", "Object successfully updated!");
         return ResponseEntity.ok(map);
     }
+    // ------------------------ Create a landmark ------------------------
 
     @RequestMapping(value="/landmark/create", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public @ResponseBody
@@ -115,6 +126,8 @@ public class Landmarks {
         map.put("message", "Object successfully created!");
         return new ResponseEntity<>(map, null, HttpStatus.CREATED);
     }
+
+    // ------------------------ Delete a landmark ------------------------
 
     @RequestMapping(value="/landmark/delete/{id}", params = "format=json", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
     public @ResponseBody

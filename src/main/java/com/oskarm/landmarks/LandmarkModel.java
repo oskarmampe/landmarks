@@ -1,6 +1,14 @@
 package com.oskarm.landmarks;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ *
+ * A simple Model Object that simply acts a struct, containing data about an object.
+ * It has an constructor, getters, setters and toString() only.
+ *
+ */
+
+//An annotation is needed for parsing JSON, if a JSON with unknown data comes, ignore any of these extraneous fields.
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LandmarkModel {
     private long id;

@@ -7,27 +7,38 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ *
+ * Entry point of the landmark API
+ * DATABASE DATA TAKEN FROM: https://leeds-list.com/culture/30-must-visit-yorkshire-attractions/
+ *
+ */
 @SpringBootApplication
 public class LandmarksApplication implements CommandLineRunner {
 
+    //Logger for debugging and print speeds etc.
 	private static final Logger log = LoggerFactory.getLogger(LandmarksApplication.class);
 
+	// Run the application
 	public static void main(String[] args) {
 		SpringApplication.run(LandmarksApplication.class, args);
 	}
 
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	JdbcTemplate jdbcTemplate;//JDBC
 
+    /**
+     *
+     * Method to initialise the database.
+     *
+     * @param strings
+     * @throws Exception
+     */
 	@Override
 	public void run(String... strings) throws Exception {
 
@@ -39,6 +50,7 @@ public class LandmarksApplication implements CommandLineRunner {
 
         ArrayList<Object[]> records = new ArrayList<>();
 
+        // Add some landmarks to the database
         records.add(new String[] {"Fountains Abbey", "Harrogate"});
         records.add(new String[] {"Henry Moore Institute", "Leeds"});
         records.add(new String[] {"The Deep (aquarium)", "Hull"});
@@ -70,15 +82,10 @@ public class LandmarksApplication implements CommandLineRunner {
         records.add(new String[] {"National Railway Museum", "York"});
 
 		log.info(Arrays.toString(records.toArray()));
+		//Insert from the array to the database
 		records.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
 
-		// Uses JdbcTemplate's batchUpdate operation to bulk load data
+		// Use JDBC's batchUpdate to bulk insert data
 		jdbcTemplate.batchUpdate("INSERT INTO landmarks(name, city) VALUES (?,?)", records);
-
-		log.info("Querying for landmark records where city = 'Leeds':");
-		jdbcTemplate.query(
-				"SELECT id, name, city FROM landmarks WHERE city = ?", new Object[] { "Leeds" },
-				(rs, rowNum) -> new LandmarkModel(rs.getLong("id"), rs.getString("name"), rs.getString("city"))
-		).forEach(landmark -> log.info(landmark.toString()));
 	}
 }
